@@ -1,0 +1,23 @@
+# https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions
+
+on:
+  workflow_call:
+    inputs:
+      environment:
+        type: string
+        description: Environment to deploy to
+        default: production
+
+permissions:
+  deployments: write
+
+name: Deploy
+
+jobs:
+  deploy:
+    name: ${{ inputs.environment }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: dudo-home-lab/.github/actions/deploy@main
+        with:
+          environment: ${{ inputs.environment }}

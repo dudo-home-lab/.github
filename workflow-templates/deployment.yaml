@@ -1,0 +1,40 @@
+on:
+  push:
+    paths-ignore:
+      - .devcontainer/**
+      - .github/**
+      - .vscode/**
+      - .gitignore
+      - Brewfile
+      - README.md
+    branches:
+      - $default-branch
+
+permissions:
+  contents: write
+  packages: write
+  attestations: write
+  id-token: write
+  deployments: write
+
+name: Deployment
+
+jobs:
+  deploy:
+    name: Deploy
+    strategy:
+      matrix:
+        target: [production, sandbox]
+    uses: dudo-home-lab/.github/.github/workflows/deploy.yaml@main
+    with:
+      environment: ${{ matrix.target }}
+
+  build:
+    needs: deploy
+    name: Build
+    uses: dudo-home-lab/.github/.github/workflows/build.yaml@main
+
+  release:
+    needs: build
+    name: Release
+    uses: dudo-home-lab/.github/.github/workflows/release.yaml@main

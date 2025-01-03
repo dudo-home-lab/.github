@@ -1,0 +1,37 @@
+# https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions
+# https://docs.github.com/en/actions/use-cases-and-examples/publishing-packages/publishing-docker-images
+
+on:
+  workflow_call:
+    inputs:
+      registry:
+        type: string
+        description: The Docker registry to push the image to
+        required: false
+        default: ghcr.io
+      image_name:
+        type: string
+        description: The name of the Docker image
+        required: false
+        default: ${{ github.repository }}
+
+permissions:
+  contents: read
+  packages: write
+  attestations: write
+  id-token: write
+
+name: Build & Push Container Image
+
+jobs:
+  image:
+    name: Image
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: 'true'
+      - uses: dudo-home-lab/.github/actions/build@main
+        with:
+          registry: ${{ inputs.registry }}
+          image_name: ${{ inputs.image_name }}
