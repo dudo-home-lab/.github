@@ -18,6 +18,6 @@ jobs:
     name: ${{ inputs.environment }}
     runs-on: ubuntu-latest
     steps:
-      - uses: dudo-home-lab/.github/actions/deploy@main
+      - uses: gitops-ci-cd/.github/actions/deploy@main
         with:
           environment: ${{ inputs.environment }}

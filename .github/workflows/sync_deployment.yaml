@@ -32,7 +32,7 @@ jobs:
     name: ${{ inputs.environment }}
     runs-on: ubuntu-latest
     steps:
-      - uses: dudo-home-lab/.github/actions/sync_deployment@main
+      - uses: gitops-ci-cd/.github/actions/sync_deployment@main
         with:
           ref: ${{ inputs.ref }}
           state: ${{ inputs.state }}
