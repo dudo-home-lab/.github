@@ -1,4 +1,4 @@
-# Dudo Home Lab
+# Home Lab
 
 The lab is a collection of applications and services that are used to demonstrate and test various technologies and methodologies. The lab is built using GitOps principles and practices, with the goal of providing a consistent and reliable environment for development and testing.
 
