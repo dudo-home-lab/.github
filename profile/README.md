@@ -4,11 +4,11 @@ The lab is a collection of applications and services that are used to demonstrat
 
 ## Repositories Structure
 
-- [[app]](https://github.com/dudo-home-lab/acme-node) Repository
+- [app] Repository
 
   Contains the source code for applications, including any workflows. Tags and releases are created here for production deployments. PRs labeled appropriately trigger preview deployments via Argo CD. See [argo-config](https://github.com/dudo-home-lab/argo-config/blob/main/app-of-apps/apps/) for more information.
 
-- [[app]-deployment](https://github.com/dudo-home-lab/acme-node-deployment) Repository
+- [app]-deployment Repository
 
   Holds deployment manifests and configuration files for the application. These repositories are auto discovered by Argo CD for continuous deployment to their applicable environments. See [argo-config](https://github.com/dudo-home-lab/argo-config/blob/main/app-of-apps/apps/) for more information.
 
