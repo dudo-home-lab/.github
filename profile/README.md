@@ -107,6 +107,12 @@ curl -sfL https://get.k3s.io | sh -s - \
 # --disable local-storage \
 ```
 
+Grab the kubeconfig file to update the local `.kube/config`.
+
+```sh
+cat /etc/rancher/k3s/k3s.yaml
+```
+
 ### Worker Node
 
 ```sh
@@ -117,4 +123,19 @@ curl -sfL https://get.k3s.io | sh -
 
 # optional check to ensure a node is fully operational
 k3s check-config
+```
+
+### kubectl
+
+Few more things to finish up
+
+```sh
+kubectl label nodes rk12 rk13 rk14 node-role.kubernetes.io/worker=true
+```
+
+Temporarily expose the Argo CD server
+
+```sh
+kubectl port-forward svc/argocd-server -n argocd 8080:443
+kubectl get secret argocd-initial-admin-secret -n argocd -o jsonpath="{.data.password}" | base64 --decode
 ```
