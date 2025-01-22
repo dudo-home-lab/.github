@@ -24,7 +24,7 @@ jobs:
     name: Deploy
     strategy:
       matrix:
-        target: [production, sandbox]
+        target: [sandbox]
     uses: dudo-home-lab/.github/.github/workflows/deploy.yaml@main
     with:
       environment: ${{ matrix.target }}

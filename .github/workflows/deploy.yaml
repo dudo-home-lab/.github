@@ -6,7 +6,7 @@ on:
       environment:
         type: string
         description: Environment to deploy to
-        default: production
+        default: sandbox
 
 permissions:
   deployments: write
