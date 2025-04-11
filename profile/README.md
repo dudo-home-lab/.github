@@ -92,7 +92,7 @@ Node 1 of the turing pi cluster is used as the control plane. It's IP is `192.16
 
 ```sh
 export K3S_TOKEN=$(uuidgen)
-export CONTROLLER_IP=192.168.4.153
+export CONTROLLER_IP=rk11
 
 curl -sfL https://get.k3s.io | sh -s - \
 --kubelet-arg "root-dir=$KUBELET_DIR" \
@@ -119,7 +119,7 @@ cat /etc/rancher/k3s/k3s.yaml
 
 ```sh
 export K3S_TOKEN=$K3S_TOKEN
-export K3S_URL=https://192.168.4.153:6443
+export K3S_URL=https://rk11:6443
 
 curl -sfL https://get.k3s.io | sh -
 
