@@ -88,17 +88,15 @@ sudo ln -s "${PV_DIR_NEW}" "${PV_DIR_OLD}"
 
 ### Control Plane
 
-Node 1 of the turing pi cluster is used as the control plane. It's IP is `192.168.4.153`.
+Node 1 of the turing pi cluster is used as the control plane.
 
 ```sh
-export K3S_TOKEN=$(uuidgen)
-export CONTROLLER_IP=rk11
-
 curl -sfL https://get.k3s.io | sh -s - \
 --kubelet-arg "root-dir=$KUBELET_DIR" \
 --write-kubeconfig-mode 644 \
---token $K3S_TOKEN \
---node-ip $CONTROLLER_IP \
+--token $(uuidgen) \
+--node-ip $(getent ahostsv4 rk11 | awk '{ print $1; exit }') \
+--tls-san=rk11 \
 --cluster-cidr=10.0.0.0/16 \
 --disable-network-policy \
 --disable-cloud-controller \
